@@ -5,7 +5,7 @@ var options;
 options = {
     startVal: 0,
     decimalPlaces: 0,
-    duration: 2,
+    duration: 5,
     useEasing: true,
     separseparator: ','
   };
