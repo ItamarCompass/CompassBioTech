@@ -1,5 +1,7 @@
 import { CountUp } from 'https://cdn.jsdelivr.net/gh/inorganik/CountUp.js@master/dist/countUp.js';
 
+var options;
+
 options = {
     startVal: 0,
     decimalPlaces: 0,
