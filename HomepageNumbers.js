@@ -1,15 +1,5 @@
 import { CountUp } from 'https://cdn.jsdelivr.net/gh/inorganik/CountUp.js@master/dist/countUp.js';
 
-var isInViewport = function (elem) {
-  var bounding = elem.getBoundingClientRect();
-  return (
-      bounding.top >= 0 &&
-      bounding.left >= 0 &&
-      bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
-};
-
 var options;
 
 options = {
@@ -28,12 +18,19 @@ var growth = new CountUp('growth-num', 50, options);
 var patents = new CountUp('patents-num', 300, options);
 
 var numbersSection = document.getElementById('numbers-div');
-window.addEventListener('scroll', function (event) {
-  if (isInViewport(numbersSection)) {
-    countries.start();
-    cagr.start();
-    market.start();
-    production.start();
-    growth.start();
-    patents.start();
-}}, false);
+
+var observer = new IntersectionObserver(function(entries) {
+	// isIntersecting is true when element and viewport are overlapping
+	// isIntersecting is false when element and viewport don't overlap
+  if(entries[0].isIntersecting === true)
+  {
+  countries.start();
+  cagr.start();
+  market.start();
+  production.start();
+  growth.start();
+  patents.start();
+  }
+}, { threshold: [0] });
+
+observer.observe(numbersSection);
